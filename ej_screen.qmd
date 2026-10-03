@@ -28,6 +28,7 @@ Plotting the percentage of people of color in each Maryland county.
 
 ```{r}
 tm_shape(maryland_counties) + 
+  tm_graticules() +
   tm_polygons(fill = "P_PEOPCOLORPCT", # % POC by county avg
               fill.scale = tm_scale_continuous(values = "brewer.blues"), # create a color scale
               fill.legend = tm_legend(title = "\nPercentage of\nPeople of Color\n", # break in the legend title so the legend doesn't look so wide
@@ -36,14 +37,16 @@ tm_shape(maryland_counties) +
                                       text.size = 0.5,
                                       height = 17)) +
   tm_title("Percentage of People of Color") +
-  tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
+  tm_compass(position = tm_pos_in("left", "bottom"))   # make sure the compass doesn't cover any of the data
 
 ```
 
+This map depicts the percentage of people of color in each county in Maryland. 
 
 Cancer risk based on the EJ Screen air toxics index.
 ```{r}
 tm_shape(maryland_counties) + 
+  tm_graticules() +
   tm_polygons(fill = "D2_RSEI_AIR", # % POC by county avg
               fill.scale = tm_scale_continuous(values = "SunsetDark"), # create a color scale
               fill.legend = tm_legend(title = "\nAir Toxics Cancer\nRisk EJ Index\n", # break in the legend title so the legend doesn't look so wide
@@ -60,6 +63,7 @@ tm_shape(maryland_counties) +
 EJ Index - Particulate Matter 2.5 (level in air)
 ```{r}
 tm_shape(maryland_counties) + 
+  tm_graticules() +
   tm_polygons(fill = "D2_PM25", # % POC by county avg
               fill.scale = tm_scale_continuous(values = "PurpOr"), # create a color scale
               fill.legend = tm_legend(title = "\nParticulate Matter\n2.5 EJ Index\n", # break in the legend title so the legend doesn't look so wide
