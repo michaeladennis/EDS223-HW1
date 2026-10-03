@@ -24,18 +24,50 @@ maryland_counties <- aggregate(maryland, by = list(maryland$CNTY_NAME), FUN = me
 ```
 
 
+Plotting the percentage of people of color in each Maryland county.
+
 ```{r}
-baltimore_county <- maryland_counties |>
-  filter(Group.1 == "Baltimore City")   # filter to just balt city to get an outline vector
+tm_shape(maryland_counties) + 
+  tm_polygons(fill = "P_PEOPCOLORPCT", # % POC by county avg
+              fill.scale = tm_scale_continuous(values = "brewer.blues"), # create a color scale
+              fill.legend = tm_legend(title = "\nPercentage of\nPeople of Color\n", # break in the legend title so the legend doesn't look so wide
+                                      position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
+                                      title.size = 0.7,
+                                      text.size = 0.5,
+                                      height = 17)) +
+  tm_title("Percentage of People of Color") +
+  tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
+
 ```
 
-trying to figure out what to plot
 
+Cancer risk based on the EJ Screen air toxics index.
 ```{r}
-tm_shape(maryland_counties, layer = "Shape") +
-    tm_polygons(fill = "white") +
-tm_shape(baltimore_county) +
-    tm_borders(col = "red" ) +
-tm_shape()
+tm_shape(maryland_counties) + 
+  tm_polygons(fill = "D2_RSEI_AIR", # % POC by county avg
+              fill.scale = tm_scale_continuous(values = "SunsetDark"), # create a color scale
+              fill.legend = tm_legend(title = "\nAir Toxics Cancer\nRisk EJ Index\n", # break in the legend title so the legend doesn't look so wide
+                                      position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
+                                      title.size = 0.7,
+                                      text.size = 0.5,
+                                      height = 15)) +
+  tm_title("Air Toxics Cancer Risk EJ Index") +
+  tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
+
+```
+
+
+EJ Index - Particulate Matter 2.5 (level in air)
+```{r}
+tm_shape(maryland_counties) + 
+  tm_polygons(fill = "D2_PM25", # % POC by county avg
+              fill.scale = tm_scale_continuous(values = "PurpOr"), # create a color scale
+              fill.legend = tm_legend(title = "\nParticulate Matter\n2.5 EJ Index\n", # break in the legend title so the legend doesn't look so wide
+                                      position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
+                                      title.size = 0.7,
+                                      text.size = 0.5,
+                                      height = 15)) +
+  tm_title("Particulate Matter 2.5 EJ Index") +
+  tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
 
 ```
