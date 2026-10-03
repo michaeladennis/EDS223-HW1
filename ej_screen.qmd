@@ -23,12 +23,19 @@ maryland_counties <- aggregate(maryland, by = list(maryland$CNTY_NAME), FUN = me
 
 ```
 
+
+```{r}
+baltimore_county <- maryland_counties |>
+  filter(Group.1 == "Baltimore City")   # filter to just balt city to get an outline vector
+```
+
 trying to figure out what to plot
 
 ```{r}
 tm_shape(maryland_counties, layer = "Shape") +
-    tm_polygons() +
-tm_shape(baltimore) +
-    tm_borders(col = "red" )
+    tm_polygons(fill = "white") +
+tm_shape(baltimore_county) +
+    tm_borders(col = "red" ) +
+tm_shape()
 
 ```
