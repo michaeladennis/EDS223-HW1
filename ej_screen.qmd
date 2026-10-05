@@ -1,5 +1,6 @@
 # Homework 1 - Exploring environmental injustices
-Read in data
+
+## Load packages and read in data
 
 ```{r}
 #| warning: false
@@ -26,59 +27,77 @@ maryland_counties <- aggregate(maryland, by = list(maryland$CNTY_NAME), FUN = me
 ```
 
 
-### Plotting the percentage of people of color in each Maryland county.
+## Visualize
+### Plotting the percentage of people of color in each Maryland county
 ```{r}
 tm_shape(maryland_counties) + 
   tm_graticules() +
-  tm_polygons(fill = "P_PEOPCOLORPCT", # % POC by county avg
+  tm_polygons(fill = "P_PEOPCOLORPCT", # People of color (%)
               fill.scale = tm_scale_continuous(values = "brewer.blues"), # create a color scale
-              fill.legend = tm_legend(title = "\nPercentage of\nPeople of Color\n", # break in the legend title so the legend doesn't look so wide
+              fill.legend = tm_legend(title = "\nPeople of\ncolor (%)\n", # break in the legend title so the legend doesn't look so wide
                                       position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
                                       title.size = 0.7,
                                       text.size = 0.5,
                                       height = 17)) +
-  tm_title("Percentage of People of Color") +
+  tm_title("People of Color by County, Maryland (EJScreen 2023)") +
   tm_compass(position = tm_pos_in("left", "bottom"))   # make sure the compass doesn't cover any of the data
 
 ```
 
-This map depicts the percentage of people of color in each county in Maryland. As demonstrated by this map, Baltimore City and Prince George's County have the highest percentages of Black people. Black people make up almost 60% of the population in both of these counties ([nielsberg.com]('https://www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/')). Both of these counties also happen to be located in or next to two major cities, Baltimore and Washington D.C..
+This map depicts the percentage of people of color in each county in Maryland. As demonstrated by this map, Baltimore City and Prince George's County have the highest percentages of people of color. Black people make up almost 60% of the population in both of these counties ([Nielsberg]('https://www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/')). Both of these counties also happen to be located in or next to two major cities, Baltimore and Washington D.C..
 
 
-### Plotting Diesel particulate matter.
+### Plotting Diesel particulate matter
 ```{r}
 tm_shape(maryland_counties) + 
   tm_graticules() +
-  tm_polygons(fill = "DSLPM", # % POC by county avg
+  tm_polygons(fill = "DSLPM", # diesl pm in the air by county
               fill.scale = tm_scale_continuous(values = "PurpOr"), # create a color scale
-              fill.legend = tm_legend(title = "\nDiesel Particulate\nMatter (µg/m^3)\n\n", # break in the legend title so the legend doesn't look so wide
+              fill.legend = tm_legend(title = "\nDiesel PM (µg/m^3)\n\n", # break in the legend title so the legend doesn't look so wide
                                       position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
                                       title.size = 0.7,
                                       text.size = 0.5,
                                       height = 16)) +
-  tm_title("Diesel Particulate Matter") +
+  tm_title("Diesel Particulate Matter by County, Maryland (EJScreen 2023)") +
   tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
 
 ```
 
-This map showcases the average diesel particuplate matter (PM) exposure a person may encounter in each county. Diesel particulate matter is measured in µg/m^3. Diesel PM mostly comes from exhaust ([EPA Air Toxic's Screening]('https://web.archive.org/web/20250123161322/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#ejin')). We can see that diesel PM is highest in counties that also have the highest perentages of Black residents.
+This map showcases the average diesel particuplate matter (PM) exposure a person may encounter in each county. Diesel particulate matter is measured in µg/m^3. Diesel PM mostly comes from exhaust ([EPA]('https://web.archive.org/web/20250123161322/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#ejin')). We can see that diesel PM is highest in counties that also have the highest perentages of people of color.
 
 
-### Plotting the air toxics cancer risk.
+### Plotting the air toxics cancer risk
 
 ```{r}
 tm_shape(maryland_counties) + 
   tm_graticules() +
-  tm_polygons(fill = "CANCER", # % POC by county avg
+  tm_polygons(fill = "CANCER", # air toxics inhalation cancer risk
               fill.scale = tm_scale_continuous(values = "SunsetDark"), # create a color scale
-              fill.legend = tm_legend(title = "\nAir Toxics Cancer Risk\n", # break in the legend title so the legend doesn't look so wide
+              fill.legend = tm_legend(title = "\nLifetime cancer\nrisk (per million)\n", # break in the legend title so the legend doesn't look so wide
                                       position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
                                       title.size = 0.7,
                                       text.size = 0.5,
                                       height = 15)) +
-  tm_title("Air Toxics Cancer Risk") +
+  tm_title("Air Toxics Cancer Risk by County, Maryland (EJScreen 2023)") +
   tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
 
 ```
 
-Lastly, this third map shows the air toxics cancer risk. The data shows the estimated lifetime inhalation cancer risk from carcinogens in outdoor air from the EPA’s AirToxScreen ([EPA]('https://web.archive.org/web/20250123161322/https://www.epa.gov/AirToxScreen')). The measure of this data is persons per million over the span of 70 years (one lifetime). This map serves the purpose of tying the first two maps together. People of color throughout the U.S. often face disproportionate environmental risks and thus experience higher rates of health complications and shorter life spans. Although these data may not necessarily be causal, it is important to note the patterns.
+Lastly, this third map shows the air toxics cancer risk. The data shows the estimated lifetime inhalation cancer risk from carcinogens in outdoor air from the EPA’s AirToxScreen ([EPA]('https://web.archive.org/web/20250123161322/https://www.epa.gov/AirToxScreen')). The measure of this data is persons per million over the span of 70 years (estimated one lifetime). This map serves the purpose of tying the first two maps together. People of color throughout the U.S. often face disproportionate environmental risks and thus experience higher rates of health complications and shorter life spans. Although these data may not necessarily be causal, it is important to note the patterns.
+
+
+## Citations
+### Data
+EJScreen: Environmental Justice Screening and Mapping Tool. 
+PEDP, pedp-ejscreen.azurewebsites.net/. Accessed 4 Oct. 2026. 
+
+
+### References
+EJ Screen. 
+“Ejscreen Map Descriptions.” US EPA, 19 Dec. 2024, web.archive.org/web/20250123161322/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#ejin. 
+
+Nielsberg. 
+Counties in Maryland Ranked by Black Population - 2025 | Neilsberg, www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/. Accessed 4 Oct. 2026. 
+
+EPA. 
+“Air Toxics Screening Assessment.” US EPA, 7 Jan. 2025, web.archive.org/web/20250123161049/https://www.epa.gov/AirToxScreen. 
