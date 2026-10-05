@@ -11,7 +11,7 @@ This repository contains a .qmd file to create three different maps: the air tox
 The necessary data is housed within this repository?
 
 ### Authors and current contributors
-[Michaela Dennis]('https://github.com/michaeladennis)
+[Michaela Dennis]('https://github.com/michaeladennis')
 
 ### References and acknowledgements
 #### Data
