@@ -1,4 +1,11 @@
-# Homework 1 - Exploring environmental injustices
+---
+title: "Homework 1 - Exploring Environmental Injustices"
+author: "Your Name"
+format: pdf
+execute:
+  warning: false
+  message: false
+---
 
 ## Load packages and read in data
 
@@ -11,7 +18,8 @@ library(here)
 library(tmap)
 
 # read in geodatabase of EJScreen data at the Census Block Group level
-ejscreen <- sf::st_read('data/ejscreen/EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb') 
+ejscreen <- sf::st_read(
+  'data/ejscreen/EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb') 
 
 # filter to a state you are interested in
 maryland <- ejscreen %>%
@@ -22,7 +30,9 @@ baltimore <- ejscreen %>%
   dplyr::filter(CNTY_NAME %in% c("Baltimore City"))
 
 # find the average values for all variables within counties
-maryland_counties <- aggregate(maryland, by = list(maryland$CNTY_NAME), FUN = mean, na.rm = TRUE)
+maryland_counties <- aggregate(maryland,
+                              by = list(maryland$CNTY_NAME),
+                              FUN = mean, na.rm = TRUE)
 
 ```
 
@@ -33,14 +43,23 @@ maryland_counties <- aggregate(maryland, by = list(maryland$CNTY_NAME), FUN = me
 tm_shape(maryland_counties) + 
   tm_graticules() +
   tm_polygons(fill = "P_PEOPCOLORPCT", # People of color (%)
-              fill.scale = tm_scale_continuous(values = "brewer.blues"), # create a color scale
-              fill.legend = tm_legend(title = "\nPeople of\ncolor (%)\n", # break in the legend title so the legend doesn't look so wide
-                                      position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
+              fill.scale = tm_scale_continuous(
+                values = "brewer.blues"), # create a color scale
+              fill.legend = tm_legend(
+                title = "\nPeople of\ncolor (%)\n", # break in 
+                # the legend title so the legend doesn't look so wide
+                                      position = tm_pos_out(
+                                        "right", 
+                                        "center"), # don't cover map
                                       title.size = 0.7,
                                       text.size = 0.5,
                                       height = 17)) +
-  tm_title("People of Color by County, Maryland (EJScreen 2023)") +
-  tm_compass(position = tm_pos_in("left", "bottom"))   # make sure the compass doesn't cover any of the data
+  tm_title(
+    "People of Color by County, Maryland (EJScreen 2023)") +
+  tm_compass(
+    position = tm_pos_in(
+      "left",
+       "bottom"))   # make sure the compass doesn't cover data
 
 ```
 
@@ -52,14 +71,20 @@ This map depicts the percentage of people of color in each county in Maryland. A
 tm_shape(maryland_counties) + 
   tm_graticules() +
   tm_polygons(fill = "DSLPM", # diesl pm in the air by county
-              fill.scale = tm_scale_continuous(values = "PurpOr"), # create a color scale
-              fill.legend = tm_legend(title = "\nDiesel PM (µg/m^3)\n\n", # break in the legend title so the legend doesn't look so wide
-                                      position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
+              fill.scale = tm_scale_continuous(
+                values = "PurpOr"), # create a color scale
+              fill.legend = tm_legend(
+                title = "\nDiesel PM (µg/m^3)\n\n", 
+                                      position = tm_pos_out(
+                                        "right",
+                                         "center"), # don't cover map
                                       title.size = 0.7,
                                       text.size = 0.5,
                                       height = 16)) +
   tm_title("Diesel Particulate Matter by County, Maryland (EJScreen 2023)") +
-  tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
+  tm_compass(position = tm_pos_in(
+    "left",
+     "bottom"))  # make sure the compass doesn't cover data
 
 ```
 
@@ -72,14 +97,20 @@ This map showcases the average diesel particuplate matter (PM) exposure a person
 tm_shape(maryland_counties) + 
   tm_graticules() +
   tm_polygons(fill = "CANCER", # air toxics inhalation cancer risk
-              fill.scale = tm_scale_continuous(values = "SunsetDark"), # create a color scale
-              fill.legend = tm_legend(title = "\nLifetime cancer\nrisk (per million)\n", # break in the legend title so the legend doesn't look so wide
-                                      position = tm_pos_out("right", "center"), # make sure it doesn't cover the map
+              fill.scale = tm_scale_continuous(
+                values = "SunsetDark"), # create a color scale
+              fill.legend = tm_legend(
+                title = "\nLifetime cancer\nrisk (per million)\n",
+                                      position = tm_pos_out(
+                                        "right",
+                                         "center"), # make sure it doesn't cover the map
                                       title.size = 0.7,
                                       text.size = 0.5,
                                       height = 15)) +
   tm_title("Air Toxics Cancer Risk by County, Maryland (EJScreen 2023)") +
-  tm_compass(position = tm_pos_in("left", "bottom"))  # make sure the compass doesn't cover any of the data
+  tm_compass(position = tm_pos_in(
+    "left",
+     "bottom"))  # make sure the compass doesn't cover any of the data
 
 ```
 
