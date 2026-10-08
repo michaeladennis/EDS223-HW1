@@ -18,7 +18,8 @@ library(tmap)
 
 # read in geodatabase of EJScreen data at the Census Block Group level
 ejscreen <- sf::st_read(
-  'data/ejscreen/EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb') 
+  'data/ejscreen/EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb',
+   quiet = TRUE) 
 
 # filter to a state you are interested in
 maryland <- ejscreen %>%
@@ -52,10 +53,10 @@ tm_shape(maryland_counties) +
                                         "right", 
                                         "center"), # don't cover map
                                       title.size = 0.7,
-                                      text.size = 0.5,
+                                      text.size = 0.7,
                                       height = 17)) +
-tm_shape(baltimore, layer = "Shape") +
-  tm_borders(col = "red") +
+tm_shape(baltimore) +
+  tm_borders(col = "red", lwd = 2) +
   tm_shape(pg, layer = "Shape") +
     tm_borders(col = "red") +
   tm_title(
@@ -68,7 +69,7 @@ tm_shape(baltimore, layer = "Shape") +
   
 ```
 
-This map depicts the percentage of people of color in each county in Maryland. As demonstrated by this map, Baltimore City and Prince George's County have the highest percentages of people of color. Black people make up almost 60% of the population in both of these counties ([Neilsberg](https://www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/)). Both of these counties also happen to be located in or next to two major cities, Baltimore and Washington D.C..
+This map depicts the percentage of people of color in each county in Maryland. As demonstrated by this map, Baltimore City and Prince George's County have the highest percentages of people of color. Black people make up almost 60% of the population in both of these counties ([Neilsberg](https://www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/)). Both of these counties also happen to be located in or next to two major cities, Baltimore and Washington D.C. One important caveat of this data to note is that county values are unweighted means of block groups.
 
 
 ### Plotting Diesel particulate matter
@@ -79,15 +80,15 @@ tm_shape(maryland_counties) +
               fill.scale = tm_scale_continuous(
                 values = "PurpOr"), # create a color scale
               fill.legend = tm_legend(
-                title = "\nDiesel PM (µg/m^3)\n\n", 
+                title = "\nDiesel PM (µg/m³)\n\n", 
                                       position = tm_pos_out(
                                         "right",
                                          "center"), # don't cover map
                                       title.size = 0.7,
-                                      text.size = 0.5,
+                                      text.size = 0.7,
                                       height = 16)) +
-tm_shape(baltimore, layer = "Shape") +
-  tm_borders(col = "red") +
+tm_shape(baltimore) +
+  tm_borders(col = "red", lwd = 2) +
   tm_shape(pg, layer = "Shape") +
     tm_borders(col = "red") +
   tm_title("Diesel Particulate Matter by County, Maryland (EJScreen 2023)") +
@@ -97,7 +98,7 @@ tm_shape(baltimore, layer = "Shape") +
 
 ```
 
-This map showcases the average diesel particulate matter (PM) exposure a person may encounter in each county. Diesel particulate matter is measured in µg/m^3. Diesel PM mostly comes from exhaust ([EPA](https://web.archive.org/web/20250123161322/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#ejin)). We can see that diesel PM is highest in counties that also have the highest percentages of people of color.
+This map showcases the average diesel particulate matter (PM) exposure a person may encounter in each county. Diesel particulate matter is measured in µg/m³. Diesel PM mostly comes from exhaust ([EPA](https://web.archive.org/web/20250123161322/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#ejin)). We can see that diesel PM is highest in counties that also have the highest percentages of people of color.
 
 
 ### Plotting the air toxics cancer risk
@@ -114,10 +115,10 @@ tm_shape(maryland_counties) +
                                         "right",
                                          "center"),
                                       title.size = 0.7,
-                                      text.size = 0.5,
+                                      text.size = 0.7,
                                       height = 15)) +
-tm_shape(baltimore, layer = "Shape") +
-  tm_borders(col = "red") +
+tm_shape(baltimore) +
+  tm_borders(col = "red", lwd = 2) +
 tm_shape(pg, layer = "Shape") +
   tm_borders(col = "red") +  
   tm_title("Air Toxics Cancer Risk by County, Maryland (EJScreen 2023)") +
