@@ -57,8 +57,8 @@ tm_shape(maryland_counties) +
                                       height = 17)) +
 tm_shape(baltimore) +
   tm_borders(col = "red", lwd = 2) +
-  tm_shape(pg, layer = "Shape") +
-    tm_borders(col = "red") +
+  tm_shape(pg) +
+    tm_borders(col = "red", lwd = 2) +
   tm_title(
     "People of Color by County, Maryland (EJScreen 2023)") +
   tm_compass(
@@ -69,7 +69,7 @@ tm_shape(baltimore) +
   
 ```
 
-This map depicts the percentage of people of color in each county in Maryland. As demonstrated by this map, Baltimore City and Prince George's County have the highest percentages of people of color. Black people make up almost 60% of the population in both of these counties ([Neilsberg](https://www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/)). Both of these counties also happen to be located in or next to two major cities, Baltimore and Washington D.C. The red lines on this map and the two following outline Baltimore City (smaller) and Prince George's county. One important caveat of this data to note is that county values are unweighted means of block groups.
+This map depicts the percentage of people of color in each county in Maryland. As demonstrated by this map, Baltimore City and Prince George's County have the highest percentages of people of color. Black people make up almost 60% of the population in both of these counties ([Neilsberg](https://www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/)). Both of these counties also happen to be located in or next to two major cities, Baltimore and Washington D.C. The red lines on this map and the two following outline Baltimore City (smaller) and Prince George's County. One important caveat of this data to note is that county values are unweighted means of block groups.
 
 
 ### Plotting Diesel particulate matter
@@ -88,9 +88,9 @@ tm_shape(maryland_counties) +
                                       text.size = 0.7,
                                       height = 16)) +
 tm_shape(baltimore) +
-  tm_borders(col = "red", lwd = 1) +
+  tm_borders(col = "lightblue", lwd = 2) +
   tm_shape(pg) +
-    tm_borders(col = "red", lwd = 1) +
+    tm_borders(col = "lightblue", lwd = 2) +
   tm_title("Diesel Particulate Matter by County, Maryland (EJScreen 2023)") +
   tm_compass(position = tm_pos_in(
     "left",
@@ -118,9 +118,9 @@ tm_shape(maryland_counties) +
                                       text.size = 0.7,
                                       height = 15)) +
 tm_shape(baltimore) +
-  tm_borders(col = "red", lwd = 1) +
+  tm_borders(col = "lightblue", lwd = 2) +
 tm_shape(pg) +
-  tm_borders(col = "red", lwd = 1) +  
+  tm_borders(col = "lightblue", lwd = 2) +  
   tm_title("Air Toxics Cancer Risk by County, Maryland (EJScreen 2023)") +
   tm_compass(position = tm_pos_in(
     "left",
@@ -141,15 +141,13 @@ PEDP, pedp-ejscreen.azurewebsites.net/. Accessed 4 Oct. 2026.
 ### References
 EJ Screen. 
 “Ejscreen Map Descriptions.” US EPA, 19 Dec. 2024,\
-web.archive.org/web/20250123161322/https://www.epa.gov/\
-ejscreen/ejscreen-map-descriptions#ejin. 
+web.archive.org/web/20250123161322/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#ejin. 
 
 Neilsberg. 
 Counties in Maryland Ranked by Black Population - 2025\
-| Neilsberg, www.neilsberg.com/insights/lists/\
-counties-in-maryland-by-black-population/. Accessed 4 Oct. 2026. 
+| Neilsberg, www.neilsberg.com/insights/lists/counties-in-maryland-by-black-population/.   Accessed 4 Oct. 2026. 
 
 EPA. 
 “Air Toxics Screening Assessment.” US EPA, 7 Jan. 2025,\
-web.archive.org/web/20250123161049/\
+web.archive.org/web/20250123161049/  
 https://www.epa.gov/AirToxScreen. 
